@@ -6,7 +6,7 @@ one hosted copy instead of embedding images and re-declaring the same 200 lines 
 **Consume it via jsDelivr, always pinned to a tag:**
 
 ```
-https://cdn.jsdelivr.net/gh/am-consultingai/am-assets@v1/<path>
+https://cdn.jsdelivr.net/gh/am-consultingai/am-assets@v2/<path>
 ```
 
 ---
@@ -42,8 +42,8 @@ crops, resized ones for pages to reference.
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/am-consultingai/am-assets@v1/brand.css">
-  <link rel="icon" href="https://cdn.jsdelivr.net/gh/am-consultingai/am-assets@v1/logo/am-favicon.png">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/am-consultingai/am-assets@v2/brand.css">
+  <link rel="icon" href="https://cdn.jsdelivr.net/gh/am-consultingai/am-assets@v2/logo/am-favicon.png">
 </head>
 ```
 
@@ -51,7 +51,7 @@ Nav logo — on the dark brand background, use the **white** variant:
 
 ```html
 <img class="nav-logo"
-     src="https://cdn.jsdelivr.net/gh/am-consultingai/am-assets@v1/logo/am-logo-white-600.png"
+     src="https://cdn.jsdelivr.net/gh/am-consultingai/am-assets@v2/logo/am-logo-white-600.png"
      alt="AM Consulting">
 ```
 
@@ -59,7 +59,7 @@ Avatar:
 
 ```html
 <img class="av" width="200" height="200"
-     src="https://cdn.jsdelivr.net/gh/am-consultingai/am-assets@v1/portrait/avishay-200.png"
+     src="https://cdn.jsdelivr.net/gh/am-consultingai/am-assets@v2/portrait/avishay-200.png"
      alt="Avishay Meron">
 ```
 
@@ -79,7 +79,7 @@ some of the CSS — the tokens name the families but do not fetch them.
 - **No client material, ever.** If an asset names a customer, it belongs with that page.
   This repo is public; only the client pages are sensitive, and keeping them apart is
   what makes public hosting safe here.
-- **Always pin a tag** in consuming pages. `@v1` is immutable and cached permanently at
+- **Always pin a tag** in consuming pages. `@v2` is immutable and cached permanently at
   the edge. `@main` is cached for hours and produces the classic "I updated the logo and
   half my pages still show the old one".
 - **Cut a new tag on change**, so pages opt in deliberately rather than changing

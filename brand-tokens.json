@@ -1,12 +1,30 @@
 {
   "brand": "AM Consulting",
-  "updated": "2026-06-16",
+  "updated": "2026-09-02",
   "source": "AM Consulting — Brand Guide (Google Drive, authoritative)",
   "colors": {
-    "bg": { "base": "#0b0f19", "deep": "#070b13", "card": "#0d1321", "tile": "#0b101c" },
-    "text": { "primary": "#f3f4f6", "secondarySlate": ["#cbd5e1", "#e2e8f0"] },
-    "accent": { "cyan": "#22d3ee", "sky": "#38bdf8", "indigo": "#818cf8" },
-    "status": { "good": "#10b981", "bad": "#ef4444" },
+    "bg": {
+      "base": "#0b0f19",
+      "deep": "#070b13",
+      "card": "#0d1321",
+      "tile": "#0b101c"
+    },
+    "text": {
+      "primary": "#f3f4f6",
+      "secondarySlate": [
+        "#cbd5e1",
+        "#e2e8f0"
+      ]
+    },
+    "accent": {
+      "cyan": "#22d3ee",
+      "sky": "#38bdf8",
+      "indigo": "#818cf8"
+    },
+    "status": {
+      "good": "#10b981",
+      "bad": "#ef4444"
+    },
     "gradient": "linear-gradient(to right, #22d3ee, #38bdf8, #818cf8)"
   },
   "fonts": {
@@ -30,12 +48,32 @@
     "Stop reaching for GenAI by default. Start designing AI-fueled systems.",
     "From 'which model?' to 'which system?'"
   ],
-  "stats": { "aiPatents": "10+", "yearsTamingAI": "10+", "title": "CEO & Founder" },
+  "stats": {
+    "aiPatents": "10+",
+    "yearsTamingAI": "10+",
+    "title": "CEO & Founder"
+  },
   "assets": {
     "logo": "am-logo.png (2528x683, RGBA transparent) — primary wordmark",
     "favicon": "am_favicon.png (128x128, RGBA)",
     "portrait": "avishay.png (2208x1952) — Avishay Meron",
     "note": "sits on dark backgrounds; keep transparent padding; do not place on busy imagery; TODO source vector master (SVG)"
   },
-  "convention": "uppercase + letter-spaced JetBrains Mono for eyebrow labels and metric captions; Space Grotesk for headlines; Inter for body"
+  "convention": "uppercase + letter-spaced JetBrains Mono for eyebrow labels and metric captions; Space Grotesk for headlines; Inter for body",
+  "cdn": {
+    "repo": "https://github.com/am-consultingai/am-assets",
+    "base": "https://cdn.jsdelivr.net/gh/am-consultingai/am-assets@v2/",
+    "fallback": "https://am-consultingai.github.io/am-assets/",
+    "currentTag": "v2",
+    "rule": "Reference these hosted paths; do not download and embed the Drive masters. Always pin a tag.",
+    "paths": {
+      "css": "brand.css",
+      "favicon": "logo/am-favicon.png",
+      "logoDark": "logo/am-logo-white-600.png",
+      "logoLight": "logo/am-logo-600.png",
+      "avatar": "portrait/avishay-200.png",
+      "portrait": "portrait/avishay-400.png",
+      "texture": "misc/rook-blue-network.png"
+    }
+  }
 }
