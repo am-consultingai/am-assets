@@ -6,7 +6,7 @@ one hosted copy instead of embedding images and re-declaring the same 200 lines 
 **Consume it via jsDelivr, always pinned to a tag:**
 
 ```
-https://cdn.jsdelivr.net/gh/am-consultingai/am-assets@v2/<path>
+https://cdn.jsdelivr.net/gh/am-consultingai/am-assets@v3/<path>
 ```
 
 ---
@@ -17,11 +17,19 @@ https://cdn.jsdelivr.net/gh/am-consultingai/am-assets@v2/<path>
 brand.css                     tokens, base type, shared components
 brand-tokens.json             source of truth for colours, fonts, identity
 logo/
-  am-logo.png                 master, 2528 × 683 RGBA — blue wordmark
-  am-logo-600.png             600 × 162, blue — for light backgrounds
-  am-logo-white.png           master, 2243 × 605 RGBA — white Daytona variant
-  am-logo-white-600.png       600 × 162, white — web default on dark nav bars
-  am-favicon.png              128 × 128, the rook mark
+  rook-tilt.svg               tilted rook mark, vector, transparent — PRIMARY mark (v3)
+  rook-tilt-dark.svg          same mark on its own dark field
+  rook-tilt.png               master, 1198 × 2048 RGBA
+  rook-tilt-512.png           299 × 512
+  rook-tilt-256.png           150 × 256 — email and documents
+  rook-tilt-128.png           75 × 128
+  favicon/                    favicon.svg, favicon.ico, favicon-16/32/48x48.png,
+                              apple-touch-icon.png (180), icon-192.png, icon-512.png
+  am-logo.png                 legacy: master, 2528 × 683 RGBA — blue wordmark (older rook)
+  am-logo-600.png             legacy: 600 × 162, blue — for light backgrounds
+  am-logo-white.png           legacy: master, 2243 × 605 RGBA — white Daytona variant
+  am-logo-white-600.png       legacy: 600 × 162, white — raster lockup on dark
+  am-favicon.png              legacy: 128 × 128, the older rook
 portrait/
   avishay.png                 master, 2208 × 1952
   avishay-400.png             400 × 400, bio blocks and speaker cards
@@ -42,24 +50,31 @@ crops, resized ones for pages to reference.
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/am-consultingai/am-assets@v2/brand.css">
-  <link rel="icon" href="https://cdn.jsdelivr.net/gh/am-consultingai/am-assets@v2/logo/am-favicon.png">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/am-consultingai/am-assets@v3/brand.css">
+  <link rel="icon" type="image/svg+xml" href="https://cdn.jsdelivr.net/gh/am-consultingai/am-assets@v3/logo/favicon/favicon.svg">
+  <link rel="icon" sizes="32x32" href="https://cdn.jsdelivr.net/gh/am-consultingai/am-assets@v3/logo/favicon/favicon-32x32.png">
+  <link rel="apple-touch-icon" href="https://cdn.jsdelivr.net/gh/am-consultingai/am-assets@v3/logo/favicon/apple-touch-icon.png">
 </head>
 ```
 
-Nav logo — on the dark brand background, use the **white** variant:
+Nav logo — the tilted rook mark plus a live-text wordmark (crisp at any size, and the
+text inherits the page's contrast):
 
 ```html
-<img class="nav-logo"
-     src="https://cdn.jsdelivr.net/gh/am-consultingai/am-assets@v2/logo/am-logo-white-600.png"
-     alt="AM Consulting">
+<a class="wordmark" href="/">
+  <img class="nav-mark" src="https://cdn.jsdelivr.net/gh/am-consultingai/am-assets@v3/logo/rook-tilt.svg" alt="">
+  <span class="nm">AM Consulting</span>
+</a>
 ```
+
+The SVG is about 435 KB (a detailed network mesh with glow filters). Use it at nav and
+hero sizes on web pages; use `rook-tilt-256.png` in email and documents.
 
 Avatar:
 
 ```html
 <img class="av" width="200" height="200"
-     src="https://cdn.jsdelivr.net/gh/am-consultingai/am-assets@v2/portrait/avishay-200.png"
+     src="https://cdn.jsdelivr.net/gh/am-consultingai/am-assets@v3/portrait/avishay-200.png"
      alt="Avishay Meron">
 ```
 
@@ -79,7 +94,7 @@ some of the CSS — the tokens name the families but do not fetch them.
 - **No client material, ever.** If an asset names a customer, it belongs with that page.
   This repo is public; only the client pages are sensitive, and keeping them apart is
   what makes public hosting safe here.
-- **Always pin a tag** in consuming pages. `@v2` is immutable and cached permanently at
+- **Always pin a tag** in consuming pages. `@v3` is immutable and cached permanently at
   the edge. `@main` is cached for hours and produces the classic "I updated the logo and
   half my pages still show the old one".
 - **Cut a new tag on change**, so pages opt in deliberately rather than changing
@@ -101,7 +116,7 @@ Full values live in `brand-tokens.json`; `brand.css` exposes them as CSS custom 
 
 ```
 Backgrounds   #0b0f19 base · #070b13 deep · #0d1321 card · #0b101c tile
-Text          #f3f4f6 primary · #cbd5e1 / #94a3b8 / #64748b secondary
+Text          #f3f4f6 primary · #dde4ee / #b9c4d3 / #9aa6b8 secondary (15.0 / 10.9 / 7.8 : 1 on --bg)
 Accent        #22d3ee cyan · #38bdf8 sky · #818cf8 indigo
 Gradient      linear-gradient(to right, #22d3ee, #38bdf8, #818cf8)
 Status        #10b981 good · #ef4444 bad
@@ -114,9 +129,14 @@ Mono/labels   JetBrains Mono 400,500,600
 **Convention:** uppercase, letter-spaced JetBrains Mono for eyebrows and metric captions;
 Space Grotesk for headlines; Inter for paragraphs.
 
-**Logo usage:** sits on dark backgrounds, keep the transparent padding, never place it on
-busy imagery. On dark, reach for the white variant — the blue wordmark does not carry
-enough contrast against `--bg` or `--deep`.
+**Logo usage:** the tilted rook (`logo/rook-tilt.svg`) is the primary mark. It sits on dark
+backgrounds; keep the transparent padding and never place it on busy imagery. The older
+raster wordmarks are legacy — if you must use one on dark, use the white variant.
+
+**Contrast and size (v3):** every text colour at 4.5:1 or better against its background;
+never #334155 or darker for text. Mono labels and eyebrows 12px minimum, secondary body
+text 14px minimum, body weight 400 (Inter Light at 300 reads too thin on the dark
+background). No letter-spacing on Hebrew or other non-Latin text.
 
 **Tagline:** *"The model is rarely the hard part — the system around it is."*
 

@@ -1,6 +1,6 @@
 {
   "brand": "AM Consulting",
-  "updated": "2026-09-02",
+  "updated": "2026-11-17",
   "source": "AM Consulting — Brand Guide (Google Drive, authoritative)",
   "colors": {
     "bg": {
@@ -11,10 +11,10 @@
     },
     "text": {
       "primary": "#f3f4f6",
-      "secondarySlate": [
-        "#cbd5e1",
-        "#e2e8f0"
-      ]
+      "s2": "#dde4ee",
+      "s3": "#b9c4d3",
+      "s4": "#9aa6b8",
+      "note": "contrast on #0b0f19: s2 15.0:1, s3 10.9:1, s4 7.8:1. Never use #64748b or darker for text."
     },
     "accent": {
       "cyan": "#22d3ee",
@@ -54,26 +54,39 @@
     "title": "CEO & Founder"
   },
   "assets": {
-    "logo": "am-logo.png (2528x683, RGBA transparent) — primary wordmark",
-    "favicon": "am_favicon.png (128x128, RGBA)",
-    "portrait": "avishay.png (2208x1952) — Avishay Meron",
-    "note": "sits on dark backgrounds; keep transparent padding; do not place on busy imagery; TODO source vector master (SVG)"
+    "mark": "logo/rook-tilt.svg — tilted rook, vector, transparent; primary brand mark (v3)",
+    "markDark": "logo/rook-tilt-dark.svg — same mark on its own dark field",
+    "markPng": "logo/rook-tilt.png (1198x2048 master), -512, -256, -128",
+    "favicon": "logo/favicon/ — favicon.svg, favicon.ico, 16/32/48 PNG, apple-touch-icon, icon-192/512",
+    "legacyWordmark": "am-logo.png / am-logo-white*.png — older rook; keep only where a raster lockup is unavoidable",
+    "portrait": "portrait/avishay.png (2208x1952) — Avishay Meron",
+    "note": "sits on dark backgrounds; keep transparent padding; do not place on busy imagery. The SVG master is ~435 KB; use it at nav/hero sizes, use the PNGs for email and documents."
   },
   "convention": "uppercase + letter-spaced JetBrains Mono for eyebrow labels and metric captions; Space Grotesk for headlines; Inter for body",
   "cdn": {
     "repo": "https://github.com/am-consultingai/am-assets",
-    "base": "https://cdn.jsdelivr.net/gh/am-consultingai/am-assets@v2/",
+    "base": "https://cdn.jsdelivr.net/gh/am-consultingai/am-assets@v3/",
     "fallback": "https://am-consultingai.github.io/am-assets/",
-    "currentTag": "v2",
+    "currentTag": "v3",
     "rule": "Reference these hosted paths; do not download and embed the Drive masters. Always pin a tag.",
     "paths": {
       "css": "brand.css",
-      "favicon": "logo/am-favicon.png",
+      "mark": "logo/rook-tilt.svg",
+      "markPng": "logo/rook-tilt-256.png",
+      "favicon": "logo/favicon/favicon.svg",
+      "faviconPng": "logo/favicon/favicon-32x32.png",
+      "faviconIco": "logo/favicon/favicon.ico",
+      "appleTouchIcon": "logo/favicon/apple-touch-icon.png",
       "logoDark": "logo/am-logo-white-600.png",
       "logoLight": "logo/am-logo-600.png",
       "avatar": "portrait/avishay-200.png",
       "portrait": "portrait/avishay-400.png",
       "texture": "misc/rook-blue-network.png"
     }
+  },
+  "type": {
+    "minMonoLabelPx": 12,
+    "minSecondaryTextPx": 14,
+    "bodyWeight": 400
   }
 }

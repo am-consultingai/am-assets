@@ -7,6 +7,8 @@
    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap">
 
+   v3 (2026-11-17): tilted rook mark, higher-contrast greys, 12px+ labels.
+
    Values are authoritative, from brand-tokens.json and the Brand Guide.
    Page-specific layout does NOT belong here — keep this file brand-level.
    ========================================================================== */
@@ -17,7 +19,8 @@
   --bg:#0b0f19; --deep:#070b13; --card:#0d1321; --tile:#0b101c;
 
   /* text */
-  --ink:#f3f4f6; --s2:#cbd5e1; --s3:#94a3b8; --s4:#64748b;
+  --ink:#f3f4f6; --s2:#dde4ee; --s3:#b9c4d3; --s4:#9aa6b8;
+  /* v3: all greys >= 7.8:1 on --bg (v2's #64748b was 4.0:1 and failed WCAG AA) */
 
   /* lines */
   --line:rgba(148,163,184,.16); --line-soft:rgba(148,163,184,.09);
@@ -41,13 +44,16 @@
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);
-  font-size:17px;line-height:1.65;font-weight:300;-webkit-font-smoothing:antialiased;
+  font-size:17px;line-height:1.65;font-weight:400;-webkit-font-smoothing:antialiased;
   overflow-x:hidden;overflow-wrap:break-word}
 h1,h2,h3,h4{font-family:var(--display);font-weight:600;line-height:1.14;letter-spacing:-.02em;margin:0;text-wrap:balance}
 p{margin:0}
 a{color:inherit}
 ::selection{background:rgba(34,211,238,.28)}
 img{max-width:100%}
+
+/* --- non-Latin scripts: tracking is a Latin device ------------------- */
+:lang(he) .eyebrow,:lang(he) .nav-links,:lang(he) .creds div span,:lang(he) .bio .who span,:lang(ar) .eyebrow,:lang(ar) .nav-links{letter-spacing:0}
 
 /* --- helpers -------------------------------------------------------------- */
 .mono{font-family:var(--mono);font-variant-numeric:tabular-nums}
@@ -60,7 +66,7 @@ a:focus-visible,button:focus-visible,summary:focus-visible{outline:2px solid var
 @media(max-width:640px){.sec{padding-top:44px}}
 
 /* --- section headings ----------------------------------------------------- */
-.eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:var(--ls);text-transform:uppercase;
+.eyebrow{font-family:var(--mono);font-size:12.5px;letter-spacing:var(--ls);text-transform:uppercase;
   color:var(--cyan);display:flex;align-items:center;gap:10px}
 .eyebrow::before{content:"";width:22px;height:1px;background:var(--cyan);opacity:.8;flex:none}
 h2{font-size:clamp(25px,5.2vw,38px);margin-top:18px;max-width:22ch}
@@ -77,19 +83,22 @@ h2{font-size:clamp(25px,5.2vw,38px);margin-top:18px;max-width:22ch}
   text-decoration:none;flex:none;display:inline-flex;align-items:center;gap:9px;color:var(--ink)}
 .wordmark .mk{width:30px;height:30px;border-radius:8px;background:var(--grad);display:grid;place-items:center;
   font-family:var(--display);font-weight:700;font-size:12.5px;color:#06121a;letter-spacing:.02em}
-/* On the dark nav use the WHITE logo — the blue wordmark has too little contrast. */
+/* v3 nav: the tilted rook mark (logo/rook-tilt.svg) + live-text wordmark.
+   <a class="wordmark"><img class="nav-mark" src=".../logo/rook-tilt.svg" alt=""><span class="nm">AM Consulting</span></a>
+   Legacy raster lockup: use the WHITE variant on dark — the blue one has too little contrast. */
+.nav-mark{height:40px;width:auto;flex:none;display:block}
 .nav-logo{height:34px;width:auto;flex:none}
 @media(max-width:640px){.wordmark span.nm{display:none}}
-.nav-links{display:flex;gap:22px;margin-left:auto;font-family:var(--mono);font-size:11.5px;
+.nav-links{display:flex;gap:22px;margin-inline-start:auto;font-family:var(--mono);font-size:12.5px;
   letter-spacing:var(--ls);color:var(--s3);text-transform:uppercase}
 .nav-links a{text-decoration:none;padding:6px 0;border-bottom:1px solid transparent;transition:.15s}
 .nav-links a:hover{color:var(--ink);border-bottom-color:var(--cyan)}
-.nav .btn{margin-left:24px}
-@media(max-width:1000px){.nav-links{display:none}.nav .btn{margin-left:auto}}
+.nav .btn{margin-inline-start:24px}
+@media(max-width:1000px){.nav-links{display:none}.nav .btn{margin-inline-start:auto}}
 
 /* --- buttons -------------------------------------------------------------- */
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;text-decoration:none;
-  font-family:var(--mono);font-size:12px;font-weight:500;letter-spacing:.04em;
+  font-family:var(--mono);font-size:13px;font-weight:500;letter-spacing:.04em;
   padding:13px 18px;min-height:46px;border-radius:9px;border:1px solid transparent;
   transition:.18s;text-align:center}
 .btn svg{width:16px;height:16px;flex:none}
@@ -97,7 +106,7 @@ h2{font-size:clamp(25px,5.2vw,38px);margin-top:18px;max-width:22ch}
 .btn-pri:hover{filter:brightness(1.12)}
 .btn-sec{background:var(--tile);color:var(--ink);border-color:var(--line)}
 .btn-sec:hover{border-color:var(--cyan);color:var(--cyan)}
-.btn-sm{padding:10px 14px;min-height:38px;font-size:11.5px}
+.btn-sm{padding:10px 14px;min-height:38px;font-size:12.5px}
 
 /* --- question bridge ------------------------------------------------------ */
 .bridge{max-width:var(--maxw);margin:0 auto;padding:44px var(--pad) 10px;
@@ -116,7 +125,7 @@ h2{font-size:clamp(25px,5.2vw,38px);margin-top:18px;max-width:22ch}
 /* --- cards and callouts --------------------------------------------------- */
 .card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:24px}
 .rule{display:flex;gap:14px;align-items:flex-start;background:var(--tile);border:1px solid var(--line);
-  border-left:2px solid var(--cyan);border-radius:12px;padding:18px 20px}
+  border-inline-start:2px solid var(--cyan);border-radius:12px;padding:18px 20px}
 .rule .ic{flex:none;width:26px;height:26px;border-radius:7px;background:rgba(34,211,238,.14);
   display:grid;place-items:center;color:var(--cyan);font-size:14px}
 .rule p{font-size:15.5px;color:var(--s2);line-height:1.55}
@@ -127,7 +136,7 @@ h2{font-size:clamp(25px,5.2vw,38px);margin-top:18px;max-width:22ch}
 .acc summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:14px;padding:18px 0;
   font-family:var(--display);font-size:16.5px;font-weight:500;color:var(--ink)}
 .acc summary::-webkit-details-marker{display:none}
-.acc .chev{margin-left:auto;flex:none;width:18px;height:18px;stroke:var(--s4);fill:none;
+.acc .chev{margin-inline-start:auto;flex:none;width:18px;height:18px;stroke:var(--s4);fill:none;
   stroke-width:1.8;transition:.2s}
 .acc[open] .chev{transform:rotate(180deg);stroke:var(--cyan)}
 .acc-b{padding:0 0 18px 0;font-size:15.5px;color:var(--s2);line-height:1.6;max-width:70ch}
@@ -137,15 +146,15 @@ h2{font-size:clamp(25px,5.2vw,38px);margin-top:18px;max-width:22ch}
 .bio .av{width:52px;height:52px;border-radius:50%;flex:none;background:var(--tile);
   border:1px solid var(--line);object-fit:cover;display:block}
 .bio .who b{display:block;font-family:var(--display);font-size:15.5px;font-weight:500}
-.bio .who span{font-family:var(--mono);font-size:11px;color:var(--s4);letter-spacing:.04em}
+.bio .who span{font-family:var(--mono);font-size:12.5px;color:var(--s4);letter-spacing:.04em}
 img.av{object-fit:cover}
 .biotext{max-width:62ch;font-size:15.5px;color:var(--s2);line-height:1.6}
 .creds{display:flex;gap:26px;flex-wrap:wrap}
 .creds div b{font-family:var(--display);font-size:19px;font-weight:600;display:block}
-.creds div span{font-family:var(--mono);font-size:10.5px;letter-spacing:var(--ls);
+.creds div span{font-family:var(--mono);font-size:12px;letter-spacing:var(--ls);
   text-transform:uppercase;color:var(--s4)}
 .flinks{display:flex;gap:20px;justify-content:center;flex-wrap:wrap}
 .flinks a{text-decoration:none;transition:.15s}
 .flinks a:hover{color:var(--cyan)}
 footer{border-top:1px solid var(--line-soft);padding:22px var(--pad);text-align:center;
-  font-family:var(--mono);font-size:11px;color:var(--s4);letter-spacing:.04em}
+  font-family:var(--mono);font-size:12.5px;color:var(--s4);letter-spacing:.04em}
